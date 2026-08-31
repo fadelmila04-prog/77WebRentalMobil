@@ -23,18 +23,18 @@ const TARGET_WHATSAPP_NUMBER = '6289676920558';
 
 // DATA KENDARAAN (Persis 12 Unit Sesuai Referensi Grid)
 const carData = [
-  { id: 1, name: 'Honda Brio', image: brioImg, price: 'Rp 300.000/Hari', status: 'Tersedia' },
-  { id: 2, name: 'Avanza New', image: avanzaImg, price: 'Rp 400.000/Hari', status: 'Tersedia' },
-  { id: 3, name: 'Daihatsu Sigra', image: sigraImg, price: 'Rp 350.000/Hari', status: 'Tersedia' },
-  { id: 4, name: 'Innova Reborn', image: rebornImg, price: 'Rp 500.000/Hari', status: 'Tersedia' },
-  { id: 5, name: 'Fortuner GR', image: fortunerImg, price: 'Rp 1.500.000/Hari', status: 'Tersedia' },
-  { id: 6, name: 'Calya', image: calyaImg, price: 'Rp 350.000/Hari', status: 'Tersedia' },
-  { id: 7, name: 'Toyota Raize', image: raizeImg, price: 'Rp 450.000/Hari', status: 'Tersedia' },
-  { id: 8, name: 'Hiace Premio', image: hiacePremioImg, price: 'Rp 2.200.000/Hari', status: 'Tersedia' },
-  { id: 9, name: 'Innova Zenix', image: innovaZenixImg, price: 'Rp 500.000/Hari', status: 'Tersedia' },
-  { id: 10, name: 'Hiace Commuter', image: hiaceCommuterImg, price: 'Rp 1.500.000/Hari', status: 'Tersedia' },
-  { id: 11, name: 'Toyota Hilux', image: hiluxImg, price: 'Rp 2.200.000/Hari', status: 'Tersedia' },
-  { id: 12, name: 'Veloz', image: velozImg, price: 'Rp 450.000/Hari', status: 'Tersedia' }
+  { id: 1, name: 'Honda Brio', image: brioImg, price: 'Rp 300.000/Hari', status: 'Start' },
+  { id: 2, name: 'Avanza New', image: avanzaImg, price: 'Rp 400.000/Hari', status: 'Start' },
+  { id: 3, name: 'Daihatsu Sigra', image: sigraImg, price: 'Rp 350.000/Hari', status: 'Start' },
+  { id: 4, name: 'Innova Reborn', image: rebornImg, price: 'Rp 500.000/Hari', status: 'Start' },
+  { id: 5, name: 'Fortuner GR', image: fortunerImg, price: 'Rp 1.500.000/Hari', status: 'Start' },
+  { id: 6, name: 'Calya', image: calyaImg, price: 'Rp 350.000/Hari', status: 'Start' },
+  { id: 7, name: 'Toyota Raize', image: raizeImg, price: 'Rp 450.000/Hari', status: 'Start' },
+  { id: 8, name: 'Hiace Premio', image: hiacePremioImg, price: 'Rp 2.200.000/Hari', status: 'Start' },
+  { id: 9, name: 'Innova Zenix', image: innovaZenixImg, price: 'Rp 500.000/Hari', status: 'Start' },
+  { id: 10, name: 'Hiace Commuter', image: hiaceCommuterImg, price: 'Rp 1.800.000/Hari', status: 'Start' },
+  { id: 11, name: 'Toyota Hilux', image: hiluxImg, price: 'Rp 1.500.000/Hari', status: 'Start' },
+  { id: 12, name: 'Veloz', image: velozImg, price: 'Rp 450.000/Hari', status: 'Start' }
 ];
 
 export default function App() {
@@ -122,27 +122,27 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
             <img src={aboutCarImg} alt="About 77RentCar" className="about-img" />
           </div>
           <div className="about-content">
-            <h2>77<span className="text-blue">RentCar</span></h2>
+            <h2><span className="text-blue">77RentCar</span></h2>
             <p>
-              77RentCar adalah perusahaan rental kendaraan profesional yang berpusat di Indonesia. Kami berkomitmen untuk memberikan kenyamanan dan keamanan perjalanan maksimal bagi Anda, baik untuk keperluan bisnis, liburan keluarga, maupun operasional harian.
+              77 RENTCAR adalah penyedia jasa transportasi terpercaya yang berpusat di Pontianak,Kalimantan barat. Kami hadir sebagai solusi perjalanan bagi Anda yang mengutamakan kenyamanan, keamanan, dan gaya berkelas, baik untuk keperluan keluarga, korporasi, maupun rombongan wisata.
             </p>
-            <p className="sub-text">
-              Pilihan armada bervariasi mulai dari City Car, MPV, hingga Commercial & Pickup Truck siap pakai.
+            <p>
+              Kami memahami pentingnya kualitas armada dalam setiap perjalanan. Oleh karena itu, 77 RENTCAR menyediakan berbagai pilihan layanan yang selalu dalam kondisi prima, antara lain:
             </p>
             <ul className="about-list">
-              <li>Layanan Kendaraan Bersih, Nyaman & Terawat</li>
-              <li>Layanan Pengemudi Profesional & Berpengalaman</li>
-              <li>Layanan Lepas Kunci atau Dengan Sopir</li>
+              <li>Layanan Lepas Kunci</li>
+              <li>Layanan Mobil + Driver</li>
+              <li>Layanan Antar Jemput Bandara</li>
+              <li>Layanan Wisata Tour Dalam & Luar Kota</li>
             </ul>
           </div>
         </div>
       </section>
-
       {/* UNIT MOBIL */}
       <section id="unit" className="catalog-section">
         <div className="section-header">
           <h2>UNIT <span className="text-blue">MOBIL</span></h2>
-          <p>Kami menyediakan berbagai pilihan armada mobil efisien, aman, dan nyaman untuk perjalanan Anda.</p>
+          <p>Kami menghadirkan mobil pilihan untuk wisata, event, kegiatan kantor, maupun rombongan lainnya</p>
         </div>
         <div className="catalog-grid">
           {carData.map((car) => (
@@ -176,19 +176,19 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
         </div>
         <div className="stats-grid">
           <div className="stat-item">
-            <h3>5000+</h3>
+            <h3>1000+</h3>
             <p>Pelanggan Puas</p>
           </div>
           <div className="stat-item">
-            <h3>24+</h3>
-            <p>Armada Tersewa</p>
+            <h3>10+</h3>
+            <p>Ketersediaan Kendaraan</p>
           </div>
           <div className="stat-item">
-            <h3>25000+</h3>
+            <h3>1000+</h3>
             <p>Perjalanan Sukses</p>
           </div>
           <div className="stat-item">
-            <h3>8+</h3>
+            <h3>5+</h3>
             <p>Tahun Pengalaman</p>
           </div>
         </div>
