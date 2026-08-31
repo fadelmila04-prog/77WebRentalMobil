@@ -5,7 +5,7 @@ import './App.css';
 import logoImg from './assets/file_00000000c31c820b800f00b4a563bd9b.png';
 import brioImg from './assets/brio.png';
 import avanzaImg from './assets/avanza-new.png';
-import velozImg from './assets/veloz.png';
+import velozImg from './assets/Veloz.png';
 import calyaImg from './assets/calya.png';
 import sigraImg from './assets/sigra.png';
 import rebornImg from './assets/innova-reborn.png';
