@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
-
 :root {
   --bg-dark: #2449a5;
   --bg-card: #0f1117;
@@ -20,14 +19,6 @@
   padding: 0;
 }
 
-html,
-body,
-#root {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -36,6 +27,7 @@ body {
   background-color: var(--bg-dark);
   color: var(--text-white);
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
 }
 
 .text-blue {
@@ -45,17 +37,16 @@ body {
 .app-container {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
-/* NAVBAR DESKTOP */
+/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(10, 10, 10, 0.98);
+  background:  rgba(10, 10, 10, 0.98);
   border-bottom: 0.8px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -67,9 +58,9 @@ body {
   padding: 10px 76.4px;
   justify-content: space-between;
   align-items: center;
-  position: relative;
 }
 
+/* STYLING LOGO BERGAMBAR 77RENTCAR */
 .logo-brand {
   display: flex;
   align-items: center;
@@ -77,11 +68,11 @@ body {
 }
 
 .logo-img {
-  height: 120px;
+  height: 120px;  /* Diperbesar tanpa navbar ikut besar */
   width: auto;
   object-fit: contain;
-  transition: transform 0.2s ease, height 0.3s ease;
-  margin-top: -20px;
+  transition: transform 0.2s ease;
+  margin-top: -20px;  /* Negatif margin agar tidak push navbar down */
   margin-bottom: -20px;
 }
 
@@ -111,34 +102,28 @@ body {
   display: none;
   background: none;
   border: none;
-  color: #ffffff;
-  font-size: 1.8rem;
+  color: rgb(243, 9, 9);
+  font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  transition: color 0.3s ease;
-}
-
-.menu-toggle:hover {
-  color: var(--accent-blue);
 }
 
 /* HERO SECTION */
-.hero-section {
+.hero-section{
   position: relative;
   min-height: 82vh;
   display: flex;
   align-items: center;
   border-top: 0.8px solid rgba(202, 180, 51, 0.1);
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.50) 0%, rgba(13, 13, 13, 0.50) 100%);
+background: linear-gradient(135deg, rgba(26, 26, 26, 0.50) 0%, rgba(13, 13, 13, 0.50) 100%);
   overflow: hidden;
-  padding-top: 80px;
+  padding-top: 2rem;
 }
 
 .hero-container {
-  width: 100%;
-  max-width: 100%;
-  padding-left: max(2rem, calc((100vw - 1240px) / 2));
-  padding-right: 0;
+ width: 100%;
+  max-width: 100%; /* Menghilangkan batasan lebar container agar bisa rapat ke tepi layar */
+  padding-left: max(2rem, calc((100vw - 1240px) / 2)); /* Teks kiri tetap sejajar dengan navbar */
+  padding-right: 0; /* Menghilangkan jarak kanan */
   display: grid;
   grid-template-columns: 1fr 1.3fr;
   align-items: center;
@@ -177,7 +162,6 @@ body {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5rem;
   transition: background-color 0.3s;
 }
@@ -212,11 +196,10 @@ body {
   justify-content: center;
   font-size: 0.65rem;
   font-weight: bold;
-  flex-shrink: 0;
 }
 
 .hero-image-wrapper {
-  width: 100%;
+ width: 100%;
   height: 100%;
   display: flex;
   justify-content: flex-end;
@@ -294,7 +277,7 @@ body {
   top: -2px;
 }
 
-/* UNIT MOBIL */
+/* UNIT MOBIL (3 KOLOM) */
 .catalog-section {
   padding: 5rem 0;
 }
@@ -334,7 +317,6 @@ body {
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
-  width: 100%;
 }
 
 .car-card:hover {
@@ -345,7 +327,7 @@ body {
 
 .card-image-wrapper {
   width: 100%;
-  height: 242px;
+  height: 242.407px;
   background-color: #0c0d12;
   overflow: hidden;
 }
@@ -353,12 +335,11 @@ body {
 .car-card-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  background-color: #eff4ff;
+  object-fit: cover;
   transition: transform 0.4s ease;
 }
 .car-card:hover .car-card-img {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 .card-body {
@@ -386,10 +367,6 @@ body {
   cursor: pointer;
   letter-spacing: 0.5px;
   transition: all 0.3s;
-  min-height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .btn-secondary:hover {
@@ -402,7 +379,6 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-top: 0.4rem;
-  gap: 0.5rem;
 }
 
 .price-badge {
@@ -412,14 +388,12 @@ body {
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   font-weight: 600;
-  white-space: nowrap;
 }
 
 .price-text {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-white);
-  white-space: nowrap;
 }
 
 /* STATISTIK SECTION */
@@ -486,7 +460,6 @@ body {
   color: var(--primary-blue);
   font-size: 1.2rem;
   margin-top: 2px;
-  flex-shrink: 0;
 }
 
 .info-item strong {
@@ -499,8 +472,6 @@ body {
   color: var(--text-gray);
   font-size: 0.8rem;
   line-height: 1.4;
-  overflow-wrap: anywhere;
-  word-break: break-word;
 }
 
 .address-map {
@@ -509,12 +480,6 @@ body {
   background-color: #ffffff;
   border-radius: 8px;
   overflow: hidden;
-}
-
-.address-map iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
 }
 
 /* FOOTER */
@@ -545,8 +510,6 @@ body {
   font-size: 0.75rem;
   line-height: 1.6;
   margin-bottom: 0.4rem;
-  overflow-wrap: anywhere;
-  word-break: break-word;
 }
 
 .footer-col ul {
@@ -609,234 +572,29 @@ body {
   box-shadow: 0 10px 22px rgba(37, 99, 235, 0.7);
 }
 
-/* ==================================================
-   RESPONSIVE PROGRESSIVE BREAKPOINTS
-   ================================================== */
-
-/* TABLET (max-width: 992px) */
+/* RESPONSIVE DESIGN */
 @media (max-width: 992px) {
-  .navbar-container {
-    padding: 10px 24px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #0a0a0a;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
-    padding: 1rem 0;
-    gap: 0;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .nav-links a {
-    padding: 0.85rem 1.5rem;
-    font-size: 0.9rem;
-    width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-  }
-
-  .hero-container {
-    grid-template-columns: 1fr;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    gap: 2.5rem;
-  }
-
-  .hero-content {
-    padding-right: 0;
-  }
-
-  .hero-image-wrapper {
-    justify-content: center;
-  }
-
-  .hero-img {
-    width: 100%;
-    max-width: 600px;
-  }
-
-  .about-container {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
   .catalog-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
+  .hero-container,
+  .about-container,
   .address-container {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
   }
-
-  .footer-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+  .hero-img {
+    width: 100%;
   }
 }
 
-/* MOBILE (max-width: 768px) */
-@media (max-width: 768px) {
-  .navbar-container {
-    padding: 8px 16px;
-  }
-
-  .logo-img {
-    height: 70px;
-    margin-top: -8px;
-    margin-bottom: -8px;
-  }
-
-  .hero-section {
-    padding-top: 75px;
-    min-height: auto;
-    padding-bottom: 3rem;
-  }
-
-  .hero-container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .hero-content h1 {
-    font-size: 2.1rem;
-    letter-spacing: normal;
-    line-height: 1.2;
-  }
-
-  .hero-description {
-    font-size: 0.825rem;
-    max-width: 100%;
-  }
-
-  .about-section,
-  .catalog-section,
-  .stats-section,
-  .address-section {
-    padding: 3.5rem 0;
-  }
-
-  .about-container,
-  .catalog-grid,
-  .stats-grid,
-  .address-container,
-  .footer-container {
-    padding: 0 1rem;
-  }
-
-  .about-content h2 {
-    font-size: 1.65rem;
-  }
-
-  .about-content p,
-  .about-list li {
-    font-size: 0.8rem;
-  }
-
-  .card-image-wrapper {
-    height: 200px;
-  }
-}
-
-/* SMALL MOBILE (max-width: 640px) */
 @media (max-width: 640px) {
   .catalog-grid {
     grid-template-columns: 1fr;
   }
-
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
   }
-
-  .stat-item h3 {
-    font-size: 1.8rem;
-  }
-
-  .stat-item p {
-    font-size: 0.75rem;
-  }
-
-  .address-map {
-    height: 280px;
-  }
-
   .footer-container {
     grid-template-columns: 1fr;
-    gap: 1.8rem;
-  }
-
-  .floating-wa-btn {
-    width: 48px;
-    height: 48px;
-    right: 15px;
-    bottom: 15px;
-  }
-
-  .wa-icon-svg {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-/* EXTRA SMALL MOBILE (max-width: 480px) */
-@media (max-width: 480px) {
-  .hero-content h1 {
-    font-size: 1.85rem;
-  }
-
-  .hero-features {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
-  .btn-primary {
-    width: 100%;
-  }
-
-  .card-image-wrapper {
-    height: 180px;
-  }
-}
-
-/* SMALL MOBILE (max-width: 375px) */
-@media (max-width: 375px) {
-  .navbar-container {
-    padding: 6px 12px;
-  }
-
-  .logo-img {
-    height: 62px;
-  }
-
-  .hero-content h1 {
-    font-size: 1.65rem;
-  }
-
-  .card-footer {
-    gap: 0.3rem;
-  }
-
-  .price-badge {
-    font-size: 0.6rem;
-    padding: 0.15rem 0.4rem;
-  }
-
-  .price-text {
-    font-size: 0.75rem;
   }
 }
