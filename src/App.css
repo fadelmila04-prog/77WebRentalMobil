@@ -102,9 +102,10 @@ body {
   display: none;
   background: none;
   border: none;
-  color: rgb(243, 9, 9);
-  font-size: 1.5rem;
+  color: #ffffff;
+  font-size: 1.8rem;
   cursor: pointer;
+  padding: 0.2rem 0.5rem;
 }
 
 /* HERO SECTION */
@@ -574,6 +575,40 @@ background: linear-gradient(135deg, rgba(26, 26, 26, 0.50) 0%, rgba(13, 13, 13, 
 
 /* RESPONSIVE DESIGN */
 @media (max-width: 992px) {
+  .navbar-container {
+    padding: 12px 20px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    width: min(220px, 70vw);
+    background: rgba(10, 10, 10, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    padding: 0.5rem 0;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
   .catalog-grid {
     grid-template-columns: repeat(2, 1fr);
   }
