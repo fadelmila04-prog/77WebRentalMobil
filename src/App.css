@@ -759,8 +759,22 @@ body {
 }
 
 @media (max-width: 640px) {
+  .catalog-section {
+    padding: 3rem 0;
+  }
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  .section-header h2 {
+    font-size: 1.4rem;
+  }
   .catalog-grid {
     grid-template-columns: 1fr;
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+  .card-image-wrapper {
+    height: 200px;
   }
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
