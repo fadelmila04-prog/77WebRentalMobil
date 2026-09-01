@@ -24,7 +24,7 @@ html {
 }
 
 body {
-  background-color: var(--bg-dark);
+  background: #000000;
   color: var(--text-white);
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
@@ -104,7 +104,7 @@ body {
   border: none;
   color: #ffffff;
   font-size: 1.8rem;
-  cursor: pointer;
+  cursor: pointer;    
   padding: 0.2rem 0.5rem;
 }
 
@@ -115,7 +115,7 @@ body {
   display: flex;
   align-items: center;
   border-top: 0.8px solid rgba(202, 180, 51, 0.1);
-background: linear-gradient(135deg, rgba(26, 26, 26, 0.50) 0%, rgba(13, 13, 13, 0.50) 100%);
+  background: #000000;
   overflow: hidden;
   padding-top: 2rem;
 }
@@ -218,7 +218,8 @@ background: linear-gradient(135deg, rgba(26, 26, 26, 0.50) 0%, rgba(13, 13, 13, 
 /* TENTANG KAMI */
 .about-section {
   padding: 6rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: #000000;
+  border-bottom: 0.8px solid rgba(255, 255, 255, 0.05);
 }
 
 .about-container {
@@ -237,10 +238,12 @@ background: linear-gradient(135deg, rgba(26, 26, 26, 0.50) 0%, rgba(13, 13, 13, 
   overflow: hidden;
 }
 
-.about-img {
+.about-img,
+.about-video {
   width: 100%;
   height: auto;
   display: block;
+  background: #000;
 }
 
 .about-content h2 {
@@ -281,6 +284,8 @@ background: linear-gradient(135deg, rgba(26, 26, 26, 0.50) 0%, rgba(13, 13, 13, 
 /* UNIT MOBIL (3 KOLOM) */
 .catalog-section {
   padding: 5rem 0;
+  background: #000000;
+
 }
 
 .section-header {
@@ -329,7 +334,7 @@ background: linear-gradient(135deg, rgba(26, 26, 26, 0.50) 0%, rgba(13, 13, 13, 
 .card-image-wrapper {
   width: 100%;
   height: 242.407px;
-  background-color: #0c0d12;
+  background-color: #000000;
   overflow: hidden;
 }
 
@@ -475,12 +480,70 @@ background: linear-gradient(135deg, rgba(26, 26, 26, 0.50) 0%, rgba(13, 13, 13, 
   line-height: 1.4;
 }
 
+.contact-link {
+  text-decoration: none;
+}
+
+.contact-link p {
+  color: var(--text-gray);
+  margin: 0;
+}
+
+.contact-link:hover p {
+  color: var(--primary-blue);
+}
+
 .address-map {
   width: 100%;
   height: 320px;
   background-color: #ffffff;
   border-radius: 8px;
   overflow: hidden;
+}
+
+.about-contact {
+  margin-top: 1.5rem;
+  max-width: 520px;
+  text-align: left;
+}
+
+.contact-title {
+  color: #ffffff;
+  font-size: clamp(1rem, 1.3vw, 1.35rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.social-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.social-bubble {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.96);
+  color: #000000;
+  box-shadow: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-bubble:hover {
+  transform: translateY(-1px);
+}
+
+.social-bubble svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 
 /* FOOTER */
@@ -504,6 +567,20 @@ background: linear-gradient(135deg, rgba(26, 26, 26, 0.50) 0%, rgba(13, 13, 13, 
   font-weight: 700;
   margin-bottom: 1.2rem;
   color: var(--text-white);
+}
+
+.footer-contact-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-contact-link p {
+  margin: 0 0 0.6rem;
+  color: var(--text-gray);
+}
+
+.footer-contact-link:hover p {
+  color: var(--primary-blue);
 }
 
 .footer-col p {

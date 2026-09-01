@@ -99,7 +99,7 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
 </button>
             <ul className="hero-features">
               <li>
-                <span className="badge-icon">✓</span> 5000+ Pelanggan Puas
+                <span className="badge-icon">✓</span> 1000+ Pelanggan Puas
               </li>
               <li>
                 <span className="badge-icon">🛡</span> Asuransi Lengkap
@@ -135,6 +135,21 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
               <li>Layanan Antar Jemput Bandara</li>
               <li>Layanan Wisata Tour Dalam & Luar Kota</li>
             </ul>
+
+            <div className="about-contact">
+              <h3 className="contact-title">Contact us with</h3>
+              <div className="social-row">
+                <a href="https://wa.me/6289676920558" target="_blank" rel="noreferrer" className="social-bubble" aria-label="WhatsApp">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.19 1C6.4 1 1.69 5.7 1.69 11.49c0 2.04.53 4.03 1.53 5.78L1.5 23l5.9-1.99c1.68.92 3.58 1.4 5.79 1.4h.01c5.78 0 10.48-4.7 10.48-10.48 0-2.8-1.09-5.45-3.16-7.45ZM12.19 19.5c-1.71 0-3.38-.46-4.85-1.33l-.35-.2-3.5 1.18 1.18-3.42-.23-.35A8.57 8.57 0 0 1 3.63 11.5c0-4.74 3.84-8.57 8.56-8.57 2.29 0 4.44.89 6.06 2.5a8.47 8.47 0 0 1 2.5 6.07c0 4.72-3.84 8.56-8.56 8.56Zm4.7-6.42c-.26-.13-1.53-.76-1.77-.85-.24-.09-.41-.13-.58.13-.17.26-.64.85-.79 1.03-.14.17-.29.2-.55.07-.26-.13-1.09-.4-2.08-1.28-.77-.69-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.53.12-.12.26-.29.39-.44.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.4-.8-1.91-.21-.5-.43-.43-.58-.44h-.5c-.17 0-.45.06-.68.32-.23.26-.87.85-.87 2.08 0 1.23.89 2.42 1.01 2.58.13.17 1.76 2.67 4.27 3.75.6.26 1.06.42 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.53-.62 1.75-1.22.22-.61.22-1.13.15-1.24-.07-.11-.24-.17-.5-.3Z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/77rentcarpontianak" target="_blank" rel="noreferrer" className="social-bubble" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2Zm0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2Zm5.1-3.2a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@77group.id" target="_blank" rel="noreferrer" className="social-bubble" aria-label="TikTok">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.6 2c.6 1.5 1.8 2.6 3.4 3.1v2.3c-1.4 0-2.7-.4-3.9-1.2v7.2a5.2 5.2 0 1 1-5.2-5.2c.3 0 .6 0 .9.1v2.4a2.9 2.9 0 1 0 1.9 2.8V2h3.9Z"/></svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -204,21 +219,32 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
                 <span className="icon">📍</span>
                 <div>
                   <strong>Kantor Pusat</strong>
-                  <p>Jl. Karet, Karet Permata Khatulistiwa No.C1, Sungai Beliung, Pontianak Barat, Pontianak, West Kalimantan 78244, Indonesia</p>
+                  <a
+                    href="https://maps.google.com/?q=Jl.+Karet,+Karet+Permata+Khatulistiwa+No.C1,+Sungai+Beliung,+Pontianak+Barat,+Pontianak,+West+Kalimantan+78244,+Indonesia"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="contact-link"
+                  >
+                    <p>Jl. Karet, Karet Permata Khatulistiwa No.C1, Sungai Beliung, Pontianak Barat, Pontianak, West Kalimantan 78244, Indonesia</p>
+                  </a>
                 </div>
               </div>
               <div className="info-item">
                 <span className="icon">📞</span>
                 <div>
                   <strong>Telepon</strong>
-                  <p>+62 896 7692 0558</p>
+                  <a href="https://wa.me/6289676920558" target="_blank" rel="noreferrer" className="contact-link">
+                    <p>+62 896 7692 0558</p>
+                  </a>
                 </div>
               </div>
               <div className="info-item">
                 <span className="icon">✉</span>
                 <div>
                   <strong>Email</strong>
-                  <p>77rentcarpnk@gmail.com</p>
+                  <a href="mailto:77rentcarpnk@gmail.com" className="contact-link">
+                    <p>77rentcarpnk@gmail.com</p>
+                  </a>
                 </div>
               </div>
               <div className="info-item">
@@ -271,8 +297,12 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
           </div>
           <div className="footer-col">
             <h4>Hubungi Kami</h4>
-            <p>📞 +62 896 7692 0558</p>
-            <p><span className="text-blue">✉</span> 77rentcarpnk@gmail.com</p>
+            <a href="https://wa.me/6289676920558" target="_blank" rel="noreferrer" className="footer-contact-link">
+              <p>📞 +62 896 7692 0558</p>
+            </a>
+            <a href="mailto:77rentcarpnk@gmail.com" className="footer-contact-link">
+              <p><span className="text-blue">✉</span> 77rentcarpnk@gmail.com</p>
+            </a>
             <p>📍 Jl. Karet, Karet Permata Khatulistiwa No.C1, Sungai Beliung, Pontianak Barat, Pontianak, West Kalimantan 78244, Indonesia</p>
           </div>
         </div>
