@@ -39,6 +39,17 @@ body {
   min-height: 100vh;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* NAVBAR */
 .navbar {
   position: fixed;
@@ -90,12 +101,20 @@ body {
   text-decoration: none;
   font-size: 0.85rem;
   font-weight: 500;
-  transition: opacity 0.3s;
+  transition: color 0.25s ease, opacity 0.25s ease, background-color 0.25s ease;
   text-transform: capitalize;
+  padding: 0.45rem 0.7rem;
+  border-radius: 6px;
 }
 
 .nav-links a:hover {
   opacity: 0.8;
+}
+
+.nav-links a.active {
+  color: var(--primary-blue);
+  background: rgba(37, 99, 235, 0.12);
+  font-weight: 700;
 }
 
 .menu-toggle {
@@ -219,7 +238,8 @@ body {
 .about-section {
   padding: 6rem 0;
   background: #000000;
-  border-bottom: 0.8px solid rgba(255, 255, 255, 0.05);
+  border: none;
+  border-bottom: none;
 }
 
 .about-container {
@@ -234,16 +254,39 @@ body {
 
 .about-image-card {
   width: 100%;
-  border-radius: 8px;
+  border: none;
+  border-radius: 0;
   overflow: hidden;
+  background: transparent;
+  box-shadow: none;
+  line-height: 0;
+  font-size: 0;
 }
 
 .about-img,
 .about-video {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   background: #000;
+  border: none;
+  outline: none;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: none;
+  filter: none;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.about-video::-webkit-media-controls,
+.about-video::-webkit-media-controls-panel,
+.about-video::-webkit-media-controls-play-button,
+.about-video::-webkit-media-controls-enclosure {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 
 .about-content h2 {
@@ -417,10 +460,26 @@ body {
   gap: 2rem;
 }
 
+.stat-item {
+  opacity: 0.78;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.stat-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .stat-item h3 {
   font-size: 2.2rem;
   font-weight: 800;
   color: var(--primary-blue);
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .stat-item p {

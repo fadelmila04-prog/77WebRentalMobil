@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 // Import Logo & File Gambar dari src/assets/
@@ -16,7 +16,7 @@ import hiaceCommuterImg from './assets/hiace-commuter.png';
 import raizeImg from './assets/raize.png';
 import hiluxImg from './assets/hilux.png';
 import heroCarImg from './assets/hero-car.png';
-import aboutCarImg from './assets/about-car.png';
+import aboutCarVideo from './assets/about-car.mp4';
 
 // NOMOR WHATSAPP TARGET SESUAI PERMINTAAN (6289676920558)
 const TARGET_WHATSAPP_NUMBER = '6289676920558';
@@ -37,8 +37,85 @@ const carData = [
   { id: 12, name: 'Veloz', image: velozImg, price: 'Rp 450.000/Hari', status: 'Start' }
 ];
 
+const statsData = [
+  { value: 1000, suffix: '+', label: 'Pelanggan Puas' },
+  { value: 10, suffix: '+', label: 'Ketersediaan Kendaraan' },
+  { value: 1000, suffix: '+', label: 'Perjalanan Sukses' },
+  { value: 5, suffix: '+', label: 'Tahun Pengalaman' }
+];
+
+function AnimatedStat({ value, suffix, label, start }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!start) {
+      setCount(0);
+      return undefined;
+    }
+
+    let animationFrameId = null;
+    const duration = 1600;
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      setCount(Math.round(value * eased));
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
+  }, [start, value]);
+
+  return (
+    <div className={start ? 'stat-item active' : 'stat-item'}>
+      <h3>{count}{suffix}</h3>
+      <p>{label}</p>
+    </div>
+  );
+}
+
+function RevealSection({ children, id, className = '', onVisible }) {
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          onVisible?.();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [onVisible]);
+
+  return (
+    <section ref={sectionRef} id={id} className={`${className} reveal ${visible ? 'visible' : ''}`}>
+      {children}
+    </section>
+  );
+}
+
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeNav, setActiveNav] = useState('beranda');
+  const [statsVisible, setStatsVisible] = useState(false);
 
   // FUNGSI UTAMA UNTUK LANGSUNG MEMBUKA WHATSAPP DENGAN PESAN SPESIFIK MOBIL
   const handleBookingWhatsApp = (carName = '', carPrice = '') => {
@@ -70,10 +147,46 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
             <img src={logoImg} alt="77RentCar Logo" className="logo-img" />
           </a>
           <div className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
-            <a href="#beranda" onClick={() => setMobileMenuOpen(false)}>Beranda</a>
-            <a href="#tentang" onClick={() => setMobileMenuOpen(false)}>Tentang Kami</a>
-            <a href="#unit" onClick={() => setMobileMenuOpen(false)}>Unit Mobil</a>
-            <a href="#alamat" onClick={() => setMobileMenuOpen(false)}>Alamat</a>
+            <a
+              href="#beranda"
+              className={activeNav === 'beranda' ? 'active' : ''}
+              onClick={() => {
+                setActiveNav('beranda');
+                setMobileMenuOpen(false);
+              }}
+            >
+              Beranda
+            </a>
+            <a
+              href="#tentang"
+              className={activeNav === 'tentang' ? 'active' : ''}
+              onClick={() => {
+                setActiveNav('tentang');
+                setMobileMenuOpen(false);
+              }}
+            >
+              Tentang Kami
+            </a>
+            <a
+              href="#unit"
+              className={activeNav === 'unit' ? 'active' : ''}
+              onClick={() => {
+                setActiveNav('unit');
+                setMobileMenuOpen(false);
+              }}
+            >
+              Unit Mobil
+            </a>
+            <a
+              href="#alamat"
+              className={activeNav === 'alamat' ? 'active' : ''}
+              onClick={() => {
+                setActiveNav('alamat');
+                setMobileMenuOpen(false);
+              }}
+            >
+              Alamat
+            </a>
           </div>
           <button className="menu-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             ☰
@@ -82,7 +195,7 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
       </nav>
 
       {/* HERO SECTION */}
-      <section id="beranda" className="hero-section">
+      <RevealSection id="beranda" className="hero-section">
         <div className="hero-container">
           <div className="hero-content">
             <h1>Sewa Mobil Impian<br />Anda Bersama<br /><span className="text-blue">77Rentcar</span></h1>
@@ -113,13 +226,23 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
             <img src={heroCarImg} alt="Hero Car" className="hero-img" />
           </div>
         </div>
-      </section>
+      </RevealSection>
 
       {/* TENTANG KAMI */}
-      <section id="tentang" className="about-section">
+      <RevealSection id="tentang" className="about-section">
         <div className="about-container">
           <div className="about-image-card">
-            <img src={aboutCarImg} alt="About 77RentCar" className="about-img" />
+            <video
+              className="about-video"
+              src={aboutCarVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls={false}
+              disablePictureInPicture
+              preload="auto"
+            />
           </div>
           <div className="about-content">
             <h2><span className="text-blue">77RentCar</span></h2>
@@ -152,16 +275,16 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
             </div>
           </div>
         </div>
-      </section>
+      </RevealSection>
       {/* UNIT MOBIL */}
-      <section id="unit" className="catalog-section">
+      <RevealSection id="unit" className="catalog-section">
         <div className="section-header">
           <h2>UNIT <span className="text-blue">MOBIL</span></h2>
           <p>Kami menghadirkan mobil pilihan untuk wisata, event, kegiatan kantor, maupun rombongan lainnya</p>
         </div>
         <div className="catalog-grid">
-          {carData.map((car) => (
-            <div key={car.id} className="car-card">
+          {carData.map((car, index) => (
+            <div key={car.id} className="car-card" style={{ '--card-delay': `${index * 140}ms` }}>
               <div className="card-image-wrapper">
                 <img src={car.image} alt={car.name} className="car-card-img" />
               </div>
@@ -182,35 +305,22 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
             </div>
           ))}
         </div>
-      </section>
+      </RevealSection>
 
       {/* STATISTIK */}
-      <section className="stats-section">
+      <RevealSection className="stats-section" id="stats" onVisible={() => setStatsVisible(true)}>
         <div className="section-header">
           <h2>Kepercayaan <span className="text-blue">Pelanggan</span></h2>
         </div>
         <div className="stats-grid">
-          <div className="stat-item">
-            <h3>1000+</h3>
-            <p>Pelanggan Puas</p>
-          </div>
-          <div className="stat-item">
-            <h3>10+</h3>
-            <p>Ketersediaan Kendaraan</p>
-          </div>
-          <div className="stat-item">
-            <h3>1000+</h3>
-            <p>Perjalanan Sukses</p>
-          </div>
-          <div className="stat-item">
-            <h3>5+</h3>
-            <p>Tahun Pengalaman</p>
-          </div>
+          {statsData.map((stat) => (
+            <AnimatedStat key={stat.label} value={stat.value} suffix={stat.suffix} label={stat.label} start={statsVisible} />
+          ))}
         </div>
-      </section>
+      </RevealSection>
 
       {/* ALAMAT */}
-      <section id="alamat" className="address-section">
+      <RevealSection id="alamat" className="address-section">
         <div className="address-container">
           <div className="address-info">
             <h2>Alamat Kantor Utama</h2>
@@ -268,7 +378,7 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
             ></iframe>
           </div>
         </div>
-      </section>
+      </RevealSection>
 
       {/* FOOTER */}
       <footer className="footer">
