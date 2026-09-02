@@ -18,10 +18,10 @@ import hiluxImg from './assets/hilux.png';
 import heroCarImg from './assets/hero-car.png';
 import aboutCarVideo from './assets/about-car.mp4';
 
-// NOMOR WHATSAPP TARGET SESUAI PERMINTAAN (6289676920558)
+// NOMOR WHATSAPP TARGET
 const TARGET_WHATSAPP_NUMBER = '6289676920558';
 
-// DATA KENDARAAN (Persis 12 Unit Sesuai Referensi Grid)
+// DATA KENDARAAN
 const carData = [
   { id: 1, name: 'Honda Brio', image: brioImg, price: 'Rp 300.000/Hari', status: 'Start' },
   { id: 2, name: 'Avanza New', image: avanzaImg, price: 'Rp 400.000/Hari', status: 'Start' },
@@ -82,6 +82,7 @@ function AnimatedStat({ value, suffix, label, start }) {
   );
 }
 
+// PERBAIKAN: Animasi RevealSection hanya berjalan 1x agar layout stabil dan tidak berkedip
 function RevealSection({ children, id, className = '', onVisible }) {
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -95,10 +96,10 @@ function RevealSection({ children, id, className = '', onVisible }) {
         if (entry.isIntersecting) {
           setVisible(true);
           onVisible?.();
-          observer.disconnect();
+          observer.unobserve(node);
         }
       },
-      { threshold: 0.05, rootMargin: '0px 0px 100px 0px' }
+      { threshold: 0.1 }
     );
 
     observer.observe(node);
@@ -116,19 +117,35 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeNav, setActiveNav] = useState('beranda');
   const [statsVisible, setStatsVisible] = useState(false);
+  const videoRef = useRef(null);
 
-  // FUNGSI UTAMA UNTUK LANGSUNG MEMBUKA WHATSAPP DENGAN PESAN SPESIFIK MOBIL
+  // KONTROL VIDEO: Mulai dari awal (currentTime = 0) setiap kali masuk ke section "Tentang Kami"
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          videoElement.currentTime = 0; // Reset durasi video ke detik ke-0
+          videoElement.play().catch(() => {});
+        } else {
+          videoElement.pause();
+          videoElement.currentTime = 0; // Kembalikan ke detik ke-0 saat keluar layar
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(videoElement);
+    return () => observer.disconnect();
+  }, []);
+
   const handleBookingWhatsApp = (carName = '', carPrice = '') => {
     let message = '';
     
     if (carName) {
-      message = `Halo 77RentCar,
-
-Saya tertarik untuk menyewa unit berikut:
-Mobil: ${carName}
-Tarif: ${carPrice}
-
-Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
+      message = `Halo 77RentCar,\n\nSaya tertarik untuk menyewa unit berikut:\nMobil: ${carName}\nTarif: ${carPrice}\n\nMohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
     } else {
       message = `Halo 77RentCar, saya ingin menyewa mobil. Mohon informasi ketersediaan unit dan daftar harganya. Terima kasih!`;
     }
@@ -203,13 +220,13 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
               77RENT CAR hadir untuk memudahkan perjalanan Anda! Dengan armada kendaraan yang lengkap, harga terjangkau, dan layanan profesional, kami siap menjadi mitra perjalanan Anda, baik untuk kebutuhan pribadi, bisnis, maupun liburan.
             </p>
             <button 
-  className="btn-primary" 
-  onClick={() => {
-    document.getElementById('unit')?.scrollIntoView({ behavior: 'smooth' });
-  }}
->
-  Sewa Sekarang
-</button>
+              className="btn-primary" 
+              onClick={() => {
+                document.getElementById('unit')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Sewa Sekarang
+            </button>
             <ul className="hero-features">
               <li>
                 <span className="badge-icon">✓</span> 1000+ Pelanggan Puas
@@ -232,10 +249,11 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
       <RevealSection id="tentang" className="about-section">
         <div className="about-container">
           <div className="about-image-card">
+            {/* Hapus autoPlay agar video hanya berputar melalui IntersectionObserver */}
             <video
+              ref={videoRef}
               className="about-video"
               src={aboutCarVideo}
-              autoPlay
               loop
               muted
               playsInline
@@ -276,6 +294,7 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
           </div>
         </div>
       </RevealSection>
+
       {/* UNIT MOBIL */}
       <RevealSection id="unit" className="catalog-section">
         <div className="section-header">
@@ -290,7 +309,6 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
               </div>
               <div className="card-body">
                 <h3>{car.name}</h3>
-                {/* TOMBOL LANGSUNG MEMBUKA WHATSAPP DENGAN DETAIL MOBIL TERKAIT */}
                 <button 
                   className="btn-secondary" 
                   onClick={() => handleBookingWhatsApp(car.name, car.price)}
@@ -369,7 +387,7 @@ Mohon informasi ketersediaan unit dan persyaratan sewanya. Terima kasih!`;
           <div className="address-map">
             <iframe
               title="Google Map Location"
-             src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d249.36363312266127!2d109.30036378571232!3d-0.017699963965754004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMMKwMDEnMDQuMCJTIDEwOcKwMTgnMDEuMiJF!5e0!3m2!1sen!2sid!4v1788150008111!5m2!1sen!2sid"
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d249.36363312266127!2d109.30036378571232!3d-0.017699963965754004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMMKwMDEnMDQuMCJTIDEwOcKwMTgnMDEuMiJF!5e0!3m2!1sen!2sid!4v1788150008111!5m2!1sen!2sid"
               width="100%"
               height="100%"
               style={{ border: 0 }}
