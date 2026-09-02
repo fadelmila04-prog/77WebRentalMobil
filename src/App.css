@@ -782,17 +782,8 @@ body {
   }
 
   .catalog-grid {
-    grid-template-columns: repeat(3, minmax(180px, 1fr));
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    padding: 0 1rem 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
   }
-
-  .car-card {
-    min-width: 180px;
-    scroll-snap-align: start;
-  }
-
   .hero-container,
   .about-container,
   .address-container {
@@ -814,16 +805,10 @@ body {
     font-size: 1.4rem;
   }
   .catalog-grid {
-    grid-template-columns: repeat(3, minmax(180px, 1fr));
-    overflow-x: auto;
-    padding: 0 0.75rem 0.5rem;
-    gap: 0.9rem;
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+    gap: 1rem;
   }
-
-  .car-card {
-    min-width: 180px;
-  }
-
   .card-image-wrapper {
     height: 242.407px;
   }
