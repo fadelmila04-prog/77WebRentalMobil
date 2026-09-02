@@ -470,14 +470,16 @@ body {
 }
 
 .stat-item {
-  opacity: 0.78;
-  transform: translateY(14px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+  transform: translate3d(0, 28px, -120px) scale(0.8);
+  filter: blur(7px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.9s ease;
 }
 
 .stat-item.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
 }
 
 .stat-item h3 {
@@ -488,13 +490,35 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: transform 0.25s ease, color 0.25s ease, text-shadow 0.25s ease;
+  transform-style: preserve-3d;
+}
+
+.stat-item.active h3 {
+  animation: stat-pop 1s cubic-bezier(0.22, 1, 0.36, 1);
+  text-shadow: 0 0 18px rgba(59, 130, 246, 0.35);
 }
 
 .stat-item p {
   color: var(--text-gray);
   font-size: 0.8rem;
   margin-top: 0.3rem;
+  opacity: 0.85;
+}
+
+@keyframes stat-pop {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 30px, -100px) scale(0.7) rotateX(35deg);
+  }
+  55% {
+    opacity: 1;
+    transform: translate3d(0, -8px, 18px) scale(1.1) rotateX(-10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1) rotateX(0);
+  }
 }
 
 /* ALAMAT SECTION */

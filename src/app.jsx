@@ -44,7 +44,7 @@ const statsData = [
   { value: 5, suffix: '+', label: 'Tahun Pengalaman' }
 ];
 
-function AnimatedStat({ value, suffix, label, start }) {
+function AnimatedStat({ value, suffix, label, start, index }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -54,11 +54,19 @@ function AnimatedStat({ value, suffix, label, start }) {
     }
 
     let animationFrameId = null;
-    const duration = 1600;
-    const startTime = performance.now();
+    const duration = 2600;
+    const offsetDelay = value <= 10 ? 650 : value <= 100 ? 420 : 180;
+    const startTime = performance.now() + offsetDelay;
 
     const animate = (currentTime) => {
       const progress = Math.min((currentTime - startTime) / duration, 1);
+
+      if (progress < 0) {
+        setCount(0);
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
+
       const eased = 1 - Math.pow(1 - progress, 4);
       setCount(Math.round(value * eased));
 
@@ -75,7 +83,10 @@ function AnimatedStat({ value, suffix, label, start }) {
   }, [start, value]);
 
   return (
-    <div className={start ? 'stat-item active' : 'stat-item'}>
+    <div
+      className={start ? 'stat-item active' : 'stat-item'}
+      style={{ transitionDelay: `${index * 140}ms` }}
+    >
       <h3>{count}{suffix}</h3>
       <p>{label}</p>
     </div>
@@ -333,8 +344,15 @@ export default function App() {
           <h2>Kepercayaan <span className="text-blue">Pelanggan</span></h2>
         </div>
         <div className="stats-grid">
-          {statsData.map((stat) => (
-            <AnimatedStat key={stat.label} value={stat.value} suffix={stat.suffix} label={stat.label} start={statsVisible} />
+          {statsData.map((stat, index) => (
+            <AnimatedStat
+              key={stat.label}
+              value={stat.value}
+              suffix={stat.suffix}
+              label={stat.label}
+              start={statsVisible}
+              index={index}
+            />
           ))}
         </div>
       </RevealSection>
