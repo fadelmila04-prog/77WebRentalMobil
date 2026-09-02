@@ -618,6 +618,32 @@ body {
   flex-wrap: wrap;
 }
 
+.footer-social-links {
+  margin-top: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.footer-social-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-social-item:hover {
+  color: var(--text-white);
+}
+
+.footer-social-text {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
 .social-bubble {
   width: 38px;
   height: 38px;

@@ -438,10 +438,20 @@ export default function App() {
           </div>
           <div className="footer-col">
             <h4>Social Media</h4>
-            <ul>
-              <li><a href="https://www.instagram.com/77rentcarpontianak?igsh=ZnR5cGVnYWdyY2R4" target="_blank" rel="noreferrer">Instagram</a></li>
-              <li><a href="https://www.tiktok.com/@77group.id?_r=1&_t=ZS-99KuTG73bG8" target="_blank" rel="noreferrer">TikTok</a></li>
-            </ul>
+            <div className="footer-social-links">
+              <a href="https://www.instagram.com/77rentcarpontianak?igsh=ZnR5cGVnYWdyY2R4" target="_blank" rel="noreferrer" className="footer-social-item" aria-label="Instagram">
+                <span className="social-bubble">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2Zm0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2Zm5.1-3.2a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/></svg>
+                </span>
+                <span className="footer-social-text">77rentcarpontianak</span>
+              </a>
+              <a href="https://www.tiktok.com/@77group.id?_r=1&_t=ZS-99KuTG73bG8" target="_blank" rel="noreferrer" className="footer-social-item" aria-label="TikTok">
+                <span className="social-bubble">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.6 2c.6 1.5 1.8 2.6 3.4 3.1v2.3c-1.4 0-2.7-.4-3.9-1.2v7.2a5.2 5.2 0 1 1-5.2-5.2c.3 0 .6 0 .9.1v2.4a2.9 2.9 0 1 0 1.9 2.8V2h3.9Z"/></svg>
+                </span>
+                <span className="footer-social-text">77rentcarpontianak</span>
+              </a>
+            </div>
           </div>
           <div className="footer-col">
             <h4>Hubungi Kami</h4>
