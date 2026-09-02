@@ -821,6 +821,49 @@ body {
 }
 
 @media (max-width: 640px) {
+  .hero-section {
+    min-height: auto;
+    overflow: visible;
+    padding-top: 1rem;
+  }
+
+  .hero-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero-content {
+    padding-right: 0;
+  }
+
+  .hero-content h1 {
+    font-size: 2.3rem;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+  }
+
+  .hero-description {
+    max-width: 100%;
+  }
+
+  .hero-features {
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+  }
+
+  .hero-image-wrapper {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .hero-img {
+    width: 118%;
+    max-width: none;
+    margin-left: -8%;
+  }
+
   .catalog-section {
     padding: 3rem 0;
   }
