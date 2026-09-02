@@ -278,6 +278,14 @@ body {
   margin: 0;
   padding: 0;
   pointer-events: none;
+  opacity: 0.2;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  transform: scale(0.98);
+}
+
+.about-video.is-playing {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .about-video::-webkit-media-controls,

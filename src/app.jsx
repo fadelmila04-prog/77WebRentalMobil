@@ -117,9 +117,10 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeNav, setActiveNav] = useState('beranda');
   const [statsVisible, setStatsVisible] = useState(false);
+  const [videoActive, setVideoActive] = useState(false);
   const videoRef = useRef(null);
 
-  // KONTROL VIDEO: Mulai dari awal (currentTime = 0) setiap kali masuk ke section "Tentang Kami"
+  // KONTROL VIDEO: Mulai dari awal dan halus saat masuk/keluar section "Tentang Kami"
   useEffect(() => {
     const videoElement = videoRef.current;
     if (!videoElement) return undefined;
@@ -127,11 +128,13 @@ export default function App() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          videoElement.currentTime = 0; // Reset durasi video ke detik ke-0
+          videoElement.currentTime = 0;
           videoElement.play().catch(() => {});
+          setVideoActive(true);
         } else {
           videoElement.pause();
-          videoElement.currentTime = 0; // Kembalikan ke detik ke-0 saat keluar layar
+          videoElement.currentTime = 0;
+          setVideoActive(false);
         }
       },
       { threshold: 0.3 }
@@ -249,10 +252,9 @@ export default function App() {
       <RevealSection id="tentang" className="about-section">
         <div className="about-container">
           <div className="about-image-card">
-            {/* Hapus autoPlay agar video hanya berputar melalui IntersectionObserver */}
             <video
               ref={videoRef}
-              className="about-video"
+              className={`about-video ${videoActive ? 'is-playing' : ''}`}
               src={aboutCarVideo}
               loop
               muted
