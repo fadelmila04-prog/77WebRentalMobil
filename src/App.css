@@ -448,6 +448,7 @@ body {
 /* STATISTIK SECTION */
 .stats-section {
   padding: 5rem 0;
+  background: #000000;
   text-align: center;
 }
 
@@ -491,6 +492,7 @@ body {
 /* ALAMAT SECTION */
 .address-section {
   padding: 5rem 0;
+  background: #000000;
 }
 
 .address-container {
