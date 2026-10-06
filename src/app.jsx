@@ -34,7 +34,7 @@ const carData = [
   { id: 9, name: 'Innova Zenix', image: innovaZenixImg, price: 'Rp 600.000/Hari', status: 'Start' },
   { id: 10, name: 'Hiace Commuter', image: hiaceCommuterImg, price: 'Rp 1.800.000/Hari', status: 'Start' },
   { id: 11, name: 'Toyota Hilux', image: hiluxImg, price: 'Rp 1.500.000/Hari', status: 'Start' },
-  { id: 12, name: 'Veloz', image: velozImg, price: 'Rp 450.000/Hari', status: 'Start' }
+  { id: 12, name: 'Avanza Veloz', image: velozImg, price: 'Rp 450.000/Hari', status: 'Start' }
 ];
 
 const statsData = [
