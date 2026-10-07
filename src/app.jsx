@@ -11,6 +11,8 @@ import sigraImg from './assets/sigra.png';
 import rebornImg from './assets/innova-reborn.png';
 import fortunerImg from './assets/fortuner.png';
 import innovaZenixImg from './assets/innova-zenix.png';
+import zenixTypeGImg from './assets/zenix type g.jpeg';
+import zenixTypeQImg from './assets/zenix type q.jpeg';
 import zenixTypeQHevImg from './assets/zenix type Q hev.jpeg';
 import hiacePremioImg from './assets/hiace-premio.png';
 import hiaceCommuterImg from './assets/hiace-commuter.png';
@@ -24,20 +26,21 @@ const TARGET_WHATSAPP_NUMBER = '6289676920558';
 
 // DATA KENDARAAN
 const carData = [
-  { id: 1, name: 'Honda Brio', image: brioImg, price: 'Rp 300.000/Hari', status: 'Start' },
-  { id: 2, name: 'Avanza New', image: avanzaImg, price: 'Rp 400.000/Hari', status: 'Start' },
-  { id: 3, name: 'Daihatsu Sigra', image: sigraImg, price: 'Rp 350.000/Hari', status: 'Start' },
-  { id: 4, name: 'Innova Reborn', image: rebornImg, price: 'Rp 500.000/Hari', status: 'Start' },
-  { id: 5, name: 'Fortuner GR', image: fortunerImg, price: 'Rp 1.500.000/Hari', status: 'Start' },
-  { id: 6, name: 'Calya', image: calyaImg, price: 'Rp 350.000/Hari', status: 'Start' },
-  { id: 7, name: 'Toyota Raize', image: raizeImg, price: 'Rp 450.000/Hari', status: 'Start' },
-  { id: 8, name: 'Hiace Premio', image: hiacePremioImg, price: 'Rp 2.200.000/Hari', status: 'Start' },
-  { id: 9, name: 'Innova Zenix', image: innovaZenixImg, price: 'Rp 600.000/Hari', status: 'Start' },
-  { id: 10, name: 'Innova Zenix Type G', image: zenixTypeGImg, price: 'Rp 600.000/Hari', status: 'Start' },
-  { id: 11, name: 'Innova Zenix Type Q HEV', image: zenixTypeQHevImg, price: 'Rp 1.100.000/Hari', status: 'Start' },
-  { id: 12, name: 'Hiace Commuter', image: hiaceCommuterImg, price: 'Rp 1.800.000/Hari', status: 'Start' },
-  { id: 13, name: 'Toyota Hilux', image: hiluxImg, price: 'Rp 1.500.000/Hari', status: 'Start' },
-  { id: 14, name: 'Avanza Veloz', image: velozImg, price: 'Rp 450.000/Hari', status: 'Start' }
+  { id: 1, name: 'Hiace Premio', image: hiacePremioImg, price: 'Rp 2.200.000/Hari', status: 'Start' },
+  { id: 2, name: 'Hiace Commuter', image: hiaceCommuterImg, price: 'Rp 1.800.000/Hari', status: 'Start' },
+  { id: 7, name: 'Fortuner GR', image: fortunerImg, price: 'Rp 1.500.000/Hari', status: 'Start' },
+  { id: 14, name: 'Toyota Hilux', image: hiluxImg, price: 'Rp 1.500.000/Hari', status: 'Start' },
+  { id: 13, name: 'Innova Zenix Type Q HEV', image: zenixTypeQHevImg, price: 'Rp 1.100.000/Hari', status: 'Start' },
+  { id: 11, name: 'Innova Zenix Type G', image: zenixTypeGImg, price: 'Rp 650.000/Hari', status: 'Start' },
+  { id: 12, name: 'Innova Zenix Type Q', image: zenixTypeQImg, price: 'Rp 650.000/Hari', status: 'Start' },
+  { id: 10, name: 'Innova Zenix', image: innovaZenixImg, price: 'Rp 600.000/Hari', status: 'Start' },
+  { id: 6, name: 'Innova Reborn', image: rebornImg, price: 'Rp 500.000/Hari', status: 'Start' },
+  { id: 9, name: 'Toyota Raize', image: raizeImg, price: 'Rp 450.000/Hari', status: 'Start' },
+  { id: 15, name: 'Avanza Veloz', image: velozImg, price: 'Rp 450.000/Hari', status: 'Start' },
+  { id: 4, name: 'Avanza New', image: avanzaImg, price: 'Rp 400.000/Hari', status: 'Start' },
+  { id: 5, name: 'Daihatsu Sigra', image: sigraImg, price: 'Rp 350.000/Hari', status: 'Start' },
+  { id: 8, name: 'Calya', image: calyaImg, price: 'Rp 350.000/Hari', status: 'Start' },
+  { id: 3, name: 'Honda Brio', image: brioImg, price: 'Rp 300.000/Hari', status: 'Start' }
 ];
 
 const statsData = [
