@@ -69,7 +69,6 @@ body {
   max-width: 1528px;
   margin: 0 auto;
   padding: 10px 76.4px;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -96,6 +95,7 @@ body {
 .nav-links {
   display: flex;
   gap: 2.5rem;
+  margin-left: auto;
 }
 
 .nav-links a {
@@ -123,6 +123,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-left: 1rem;
 }
 
 .nav-search-input {
@@ -838,6 +839,11 @@ body {
 @media (max-width: 992px) {
   .navbar-container {
     padding: 12px 20px;
+  }
+
+  .nav-search-group {
+    margin-left: auto;
+    margin-right: 0.5rem;
   }
 
   .menu-toggle {
