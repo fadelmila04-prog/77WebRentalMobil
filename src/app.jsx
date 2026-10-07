@@ -134,10 +134,38 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const searchGroupRef = useRef(null);
   const [activeNav, setActiveNav] = useState('beranda');
   const [statsVisible, setStatsVisible] = useState(false);
   const [videoActive, setVideoActive] = useState(false);
   const videoRef = useRef(null);
+
+  useEffect(() => {
+    const originalScrollRestoration = window.history.scrollRestoration;
+    const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+    window.history.scrollRestoration = 'manual';
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.history.replaceState(
+      window.history.state,
+      '',
+      `${window.location.pathname}${window.location.search}`
+    );
+    window.scrollTo(0, 0);
+    setActiveNav('beranda');
+    setSearchOpen(false);
+    setSearchQuery('');
+    setMobileMenuOpen(false);
+
+    const restoreScrollBehavior = requestAnimationFrame(() => {
+      document.documentElement.style.scrollBehavior = originalScrollBehavior;
+    });
+
+    return () => {
+      cancelAnimationFrame(restoreScrollBehavior);
+      document.documentElement.style.scrollBehavior = originalScrollBehavior;
+      window.history.scrollRestoration = originalScrollRestoration;
+    };
+  }, []);
 
   // KONTROL VIDEO: Mulai dari awal dan halus saat masuk/keluar section "Tentang Kami"
   useEffect(() => {
@@ -191,6 +219,19 @@ export default function App() {
     });
   }, [filteredCars.length, searchOpen, searchQuery]);
 
+  useEffect(() => {
+    if (!searchOpen) return undefined;
+
+    const handleOutsideClick = (event) => {
+      if (!searchGroupRef.current?.contains(event.target)) {
+        setSearchOpen(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', handleOutsideClick);
+    return () => document.removeEventListener('pointerdown', handleOutsideClick);
+  }, [searchOpen]);
+
   return (
     <div className="app-container">
       {/* NAVBAR */}
@@ -241,7 +282,7 @@ export default function App() {
               Alamat
             </a>
           </div>
-          <div className="nav-search-group">
+          <div className="nav-search-group" ref={searchGroupRef}>
             {searchOpen && (
               <input
                 className="nav-search-input"
