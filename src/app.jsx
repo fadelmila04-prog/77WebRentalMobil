@@ -132,6 +132,8 @@ function RevealSection({ children, id, className = '', onVisible }) {
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const [activeNav, setActiveNav] = useState('beranda');
   const [statsVisible, setStatsVisible] = useState(false);
   const [videoActive, setVideoActive] = useState(false);
@@ -174,6 +176,10 @@ export default function App() {
     const waUrl = `https://wa.me/${TARGET_WHATSAPP_NUMBER}?text=${encodedMessage}`;
     window.open(waUrl, '_blank');
   };
+
+  const filteredCars = carData.filter((car) =>
+    car.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
+  );
 
   return (
     <div className="app-container">
@@ -225,6 +231,42 @@ export default function App() {
               Alamat
             </a>
           </div>
+          <div className="nav-search-group">
+            {searchOpen && (
+              <input
+                className="nav-search-input"
+                type="search"
+                placeholder="Cari nama mobil..."
+                aria-label="Cari nama mobil"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                autoFocus
+              />
+            )}
+            <button
+              type="button"
+              className="nav-search"
+              aria-label={searchOpen ? 'Tutup pencarian mobil' : 'Cari mobil'}
+              aria-expanded={searchOpen}
+              onClick={() => {
+                if (searchOpen) {
+                  setSearchOpen(false);
+                  setSearchQuery('');
+                  return;
+                }
+
+                setSearchOpen(true);
+                setActiveNav('unit');
+                setMobileMenuOpen(false);
+                document.getElementById('unit')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.3" />
+                <path d="m15.5 15.5 4.2 4.2" />
+              </svg>
+            </button>
+          </div>
           <button className="menu-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             ☰
           </button>
@@ -245,7 +287,7 @@ export default function App() {
                 document.getElementById('unit')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              Sewa Sekarang
+              Telusuri Mobil
             </button>
             <ul className="hero-features">
               <li>
@@ -321,7 +363,7 @@ export default function App() {
           <p>Kami menghadirkan mobil pilihan untuk wisata, event, kegiatan kantor, maupun rombongan lainnya</p>
         </div>
         <div className="catalog-grid">
-          {carData.map((car, index) => (
+          {filteredCars.map((car, index) => (
             <div key={car.id} className="car-card" style={{ '--card-delay': `${index * 140}ms` }}>
               <div className="card-image-wrapper">
                 <img src={car.image} alt={car.name} className="car-card-img" />
@@ -341,6 +383,11 @@ export default function App() {
               </div>
             </div>
           ))}
+          {filteredCars.length === 0 && (
+            <p className="catalog-empty" role="status">
+              Mobil dengan nama “{searchQuery.trim()}” tidak ditemukan.
+            </p>
+          )}
         </div>
       </RevealSection>
 
