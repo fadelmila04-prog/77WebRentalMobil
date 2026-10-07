@@ -181,6 +181,16 @@ export default function App() {
     car.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
   );
 
+  useEffect(() => {
+    if (!searchOpen || !searchQuery.trim() || filteredCars.length === 0) return;
+
+    setActiveNav('unit');
+    document.querySelector('.catalog-grid .car-card')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  }, [filteredCars.length, searchOpen, searchQuery]);
+
   return (
     <div className="app-container">
       {/* NAVBAR */}
@@ -256,9 +266,7 @@ export default function App() {
                 }
 
                 setSearchOpen(true);
-                setActiveNav('unit');
                 setMobileMenuOpen(false);
-                document.getElementById('unit')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
               <svg viewBox="0 0 24 24" aria-hidden="true">
