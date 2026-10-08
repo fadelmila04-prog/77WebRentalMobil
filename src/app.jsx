@@ -356,7 +356,7 @@ export default function App() {
                 document.getElementById('unit')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              Telusuri Mobil
+              Sewa Sekarang
             </button>
             <ul className="hero-features">
               <li>
