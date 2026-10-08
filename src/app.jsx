@@ -100,7 +100,7 @@ function AnimatedStat({ value, suffix, label, start, index }) {
 }
 
 // PERBAIKAN: Animasi RevealSection hanya berjalan 1x agar layout stabil dan tidak berkedip
-function RevealSection({ children, id, className = '', onVisible }) {
+function RevealSection({ children, id, className = '', onVisible, forceVisible = false, threshold = 0.1 }) {
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -116,7 +116,7 @@ function RevealSection({ children, id, className = '', onVisible }) {
           observer.unobserve(node);
         }
       },
-      { threshold: 0.1 }
+      { threshold }
     );
 
     observer.observe(node);
@@ -124,7 +124,11 @@ function RevealSection({ children, id, className = '', onVisible }) {
   }, [onVisible]);
 
   return (
-    <section ref={sectionRef} id={id} className={`${className} reveal ${visible ? 'visible' : ''}`}>
+    <section
+      ref={sectionRef}
+      id={id}
+      className={`${className} reveal ${visible || forceVisible ? 'visible' : ''}`}
+    >
       {children}
     </section>
   );
@@ -138,6 +142,7 @@ export default function App() {
   const searchGroupRef = useRef(null);
   const unitScrollFrameRef = useRef(null);
   const [activeNav, setActiveNav] = useState('beranda');
+  const [catalogRevealReady, setCatalogRevealReady] = useState(false);
   const [statsVisible, setStatsVisible] = useState(false);
   const [videoActive, setVideoActive] = useState(false);
   const videoRef = useRef(null);
@@ -210,6 +215,31 @@ export default function App() {
   const filteredCars = carData.filter((car) =>
     car.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
   );
+
+  useEffect(() => {
+    if (catalogRevealReady) return undefined;
+
+    const checkCatalogReveal = () => {
+      if (!window.matchMedia('(max-width: 992px)').matches) return;
+
+      const aboutSection = document.getElementById('tentang');
+      if (
+        aboutSection &&
+        aboutSection.getBoundingClientRect().top <= -aboutSection.offsetHeight / 2
+      ) {
+        setCatalogRevealReady(true);
+      }
+    };
+
+    checkCatalogReveal();
+    window.addEventListener('scroll', checkCatalogReveal, { passive: true });
+    window.addEventListener('resize', checkCatalogReveal);
+
+    return () => {
+      window.removeEventListener('scroll', checkCatalogReveal);
+      window.removeEventListener('resize', checkCatalogReveal);
+    };
+  }, [catalogRevealReady]);
 
   const scrollToUnit = (event) => {
     const unitSection = document.getElementById('unit');
@@ -488,7 +518,12 @@ export default function App() {
       </RevealSection>
 
       {/* UNIT MOBIL */}
-      <RevealSection id="unit" className="catalog-section">
+      <RevealSection
+        id="unit"
+        className="catalog-section"
+        forceVisible={catalogRevealReady}
+        threshold={0}
+      >
         <div className="section-header">
           <h2>UNIT <span className="text-blue">MOBIL</span></h2>
           <p>Kami menghadirkan mobil pilihan untuk wisata, event, kegiatan kantor, maupun rombongan lainnya</p>
