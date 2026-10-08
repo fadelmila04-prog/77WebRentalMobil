@@ -134,6 +134,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const navRef = useRef(null);
   const searchGroupRef = useRef(null);
   const [activeNav, setActiveNav] = useState('beranda');
   const [statsVisible, setStatsVisible] = useState(false);
@@ -232,10 +233,23 @@ export default function App() {
     return () => document.removeEventListener('pointerdown', handleOutsideClick);
   }, [searchOpen]);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return undefined;
+
+    const handleOutsideClick = (event) => {
+      if (!navRef.current?.contains(event.target)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', handleOutsideClick);
+    return () => document.removeEventListener('pointerdown', handleOutsideClick);
+  }, [mobileMenuOpen]);
+
   return (
     <div className="app-container">
       {/* NAVBAR */}
-      <nav className="navbar">
+      <nav className="navbar" ref={navRef}>
         <div className="navbar-container">
           <a href="#beranda" className="logo-brand">
             <img src={logoImg} alt="77RentCar Logo" className="logo-img" />
@@ -316,7 +330,13 @@ export default function App() {
               </svg>
             </button>
           </div>
-          <button className="menu-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-label={mobileMenuOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
+          >
             ☰
           </button>
         </div>
