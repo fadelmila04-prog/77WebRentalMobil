@@ -232,7 +232,7 @@ export default function App() {
     }
 
     const startY = window.scrollY;
-    const targetY = startY + unitSection.getBoundingClientRect().top;
+    const targetY = startY + unitSection.getBoundingClientRect().top - 32;
     const duration = 500;
     let startTime;
 
