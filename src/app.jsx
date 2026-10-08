@@ -136,6 +136,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const navRef = useRef(null);
   const searchGroupRef = useRef(null);
+  const unitScrollFrameRef = useRef(null);
   const [activeNav, setActiveNav] = useState('beranda');
   const [statsVisible, setStatsVisible] = useState(false);
   const [videoActive, setVideoActive] = useState(false);
@@ -210,6 +211,68 @@ export default function App() {
     car.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
   );
 
+  const scrollToUnit = (event) => {
+    const unitSection = document.getElementById('unit');
+    if (!unitSection) return;
+
+    if (!window.matchMedia('(max-width: 992px)').matches) {
+      if (event.currentTarget.tagName === 'BUTTON') {
+        unitSection.scrollIntoView({ behavior: 'smooth' });
+      }
+      return;
+    }
+
+    event.preventDefault();
+    if (event.currentTarget.tagName === 'A' && window.location.hash !== '#unit') {
+      window.history.pushState(window.history.state, '', '#unit');
+    }
+
+    if (unitScrollFrameRef.current) {
+      cancelAnimationFrame(unitScrollFrameRef.current);
+    }
+
+    const startY = window.scrollY;
+    const targetY = startY + unitSection.getBoundingClientRect().top;
+    const duration = 500;
+    let startTime;
+
+    const animateScroll = (currentTime) => {
+      if (startTime === undefined) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+      window.scrollTo({
+        top: startY + (targetY - startY) * easedProgress,
+        behavior: 'instant'
+      });
+
+      if (progress < 1) {
+        unitScrollFrameRef.current = requestAnimationFrame(animateScroll);
+      } else {
+        unitScrollFrameRef.current = null;
+      }
+    };
+
+    unitScrollFrameRef.current = requestAnimationFrame(animateScroll);
+  };
+
+  useEffect(() => {
+    const cancelUnitScroll = () => {
+      if (unitScrollFrameRef.current) {
+        cancelAnimationFrame(unitScrollFrameRef.current);
+        unitScrollFrameRef.current = null;
+      }
+    };
+
+    window.addEventListener('wheel', cancelUnitScroll, { passive: true });
+    window.addEventListener('touchstart', cancelUnitScroll, { passive: true });
+    return () => {
+      window.removeEventListener('wheel', cancelUnitScroll);
+      window.removeEventListener('touchstart', cancelUnitScroll);
+      cancelUnitScroll();
+    };
+  }, []);
+
   useEffect(() => {
     if (!searchOpen || !searchQuery.trim() || filteredCars.length === 0) return;
 
@@ -278,9 +341,10 @@ export default function App() {
             <a
               href="#unit"
               className={activeNav === 'unit' ? 'active' : ''}
-              onClick={() => {
+              onClick={(event) => {
                 setActiveNav('unit');
                 setMobileMenuOpen(false);
+                scrollToUnit(event);
               }}
             >
               Unit Mobil
@@ -352,9 +416,7 @@ export default function App() {
             </p>
             <button 
               className="btn-primary" 
-              onClick={() => {
-                document.getElementById('unit')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={scrollToUnit}
             >
               Sewa Sekarang
             </button>
@@ -554,7 +616,7 @@ export default function App() {
             <ul>
               <li><a href="#beranda">Beranda</a></li>
               <li><a href="#tentang">Tentang Kami</a></li>
-              <li><a href="#unit">Unit Mobil</a></li>
+              <li><a href="#unit" onClick={scrollToUnit}>Unit Mobil</a></li>
               <li><a href="#alamat">Alamat</a></li>
             </ul>
           </div>
