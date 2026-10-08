@@ -304,16 +304,6 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!searchOpen || !searchQuery.trim() || filteredCars.length === 0) return;
-
-    setActiveNav('unit');
-    document.querySelector('.catalog-grid .car-card')?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
-    });
-  }, [filteredCars.length, searchOpen, searchQuery]);
-
-  useEffect(() => {
     if (!searchOpen) return undefined;
 
     const handleOutsideClick = (event) => {
@@ -397,10 +387,41 @@ export default function App() {
                 type="search"
                 placeholder="Cari nama mobil..."
                 aria-label="Cari nama mobil"
+                aria-controls="car-search-results"
+                aria-expanded={Boolean(searchQuery.trim())}
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
                 autoFocus
               />
+            )}
+            {searchOpen && searchQuery.trim() && (
+              <div className="nav-search-results" id="car-search-results">
+                {filteredCars.length > 0 ? (
+                  filteredCars.map((car) => (
+                    <button
+                      key={car.id}
+                      type="button"
+                      className="nav-search-result"
+                      onClick={(event) => {
+                        setSearchQuery(car.name);
+                        setActiveNav('unit');
+                        setSearchOpen(false);
+                        scrollToUnit(event);
+                      }}
+                    >
+                      <img src={car.image} alt="" />
+                      <span>
+                        <strong>{car.name}</strong>
+                        <small>{car.price}</small>
+                      </span>
+                    </button>
+                  ))
+                ) : (
+                  <p className="nav-search-empty" role="status">
+                    Mobil tidak ditemukan.
+                  </p>
+                )}
+              </div>
             )}
             <button
               type="button"
